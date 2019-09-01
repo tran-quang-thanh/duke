@@ -62,19 +62,25 @@ public class Duke {
                 else if (s.equals("delete")) {
                     try {
                         int i = scanner.nextInt();
-                        System.out.println("Noted. I've removed this task:\n " + arr.get(i-1));
-                        arr.remove(i-1);
+                        System.out.println("Noted. I've removed this task:\n " + arr.get(i - 1));
+                        arr.remove(i - 1);
                         System.out.println("Now you have: " + arr.size() + " in the list");
                         writeFile(arr);
-                    }
-                    catch (IndexOutOfBoundsException e) {
+                    } catch (IndexOutOfBoundsException e) {
                         System.out.println("Check your list again to know the work you have");
                         for (int j = 1; j <= arr.size(); ++j) {
                             System.out.println(j + "." + arr.get(j - 1));
                         }
-                    }
-                    catch (NumberFormatException e) {
+                    } catch (NumberFormatException e) {
                         System.out.println("This should be the index number of your task");
+                    }
+                }
+                else if (s.equals("find")) {
+                    task = scanner.nextLine();
+                    ArrayList<Task> temp = find(arr, task.substring(1));
+                    System.out.println("Here are the matching tasks in your list:");
+                    for (int j = 1; j <= temp.size(); ++j) {
+                        System.out.println(j + "." + temp.get(j - 1));
                     }
                 }
                 else {
@@ -142,5 +148,15 @@ public class Duke {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private static ArrayList<Task> find(ArrayList<Task> arr, String keyword) {
+        ArrayList<Task> arrayList = new ArrayList<>();
+        for (Task t : arr) {
+            if (t.getDescription().contains(keyword)) {
+                arrayList.add(t);
+            }
+        }
+        return arrayList;
     }
 }
