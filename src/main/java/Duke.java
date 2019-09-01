@@ -57,7 +57,16 @@ public class Duke {
                     catch (NumberFormatException e) {
                         System.out.println("This should be the index number of your task");
                     }
-                } else {
+                }
+                else if (s.equals("find")) {
+                    task = scanner.nextLine();
+                    ArrayList<Task> temp = find(arr, task.substring(1));
+                    System.out.println("Here are the matching tasks in your list:");
+                    for (int j = 1; j <= temp.size(); ++j) {
+                        System.out.println(j + "." + temp.get(j - 1));
+                    }
+                }
+                else {
                     task = scanner.nextLine();
                     if (s.equals("todo")) {
                         try {
@@ -106,7 +115,7 @@ public class Duke {
 
     private static void writeFile(ArrayList<Task> arr) {
         String s;
-        try (FileWriter writer = new FileWriter(new File("D:\\nus\\MODULES\\sem3\\cs2113\\duke\\src\\main\\data\\duke.txt"), true);
+        try (FileWriter writer = new FileWriter(new File("D:\\nus\\MODULES\\sem3\\cs2113\\duke\\src\\main\\data\\duke.txt"));
              BufferedWriter bw = new BufferedWriter(writer)) {
 
             for (Task t : arr) {
@@ -121,5 +130,15 @@ public class Duke {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private static ArrayList<Task> find(ArrayList<Task> arr, String keyword) {
+        ArrayList<Task> arrayList = new ArrayList<>();
+        for (Task t : arr) {
+            if (t.getDescription().contains(keyword)) {
+                arrayList.add(t);
+            }
+        }
+        return arrayList;
     }
 }
