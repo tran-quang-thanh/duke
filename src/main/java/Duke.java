@@ -28,6 +28,7 @@ public class Duke {
             }
         }
         catch (Exception e) {
+            System.out.println("No file found");
             writeFile(arr);
         }
         while (scanner.hasNextLine()) {
@@ -57,8 +58,28 @@ public class Duke {
                     catch (NumberFormatException e) {
                         System.out.println("This should be the index number of your task");
                     }
-                } else {
+                }
+                else if (s.equals("delete")) {
+                    try {
+                        int i = scanner.nextInt();
+                        System.out.println("Noted. I've removed this task:\n " + arr.get(i-1));
+                        arr.remove(i-1);
+                        System.out.println("Now you have: " + arr.size() + " in the list");
+                        writeFile(arr);
+                    }
+                    catch (IndexOutOfBoundsException e) {
+                        System.out.println("Check your list again to know the work you have");
+                        for (int j = 1; j <= arr.size(); ++j) {
+                            System.out.println(j + "." + arr.get(j - 1));
+                        }
+                    }
+                    catch (NumberFormatException e) {
+                        System.out.println("This should be the index number of your task");
+                    }
+                }
+                else {
                     task = scanner.nextLine();
+                    task = task.substring(1);
                     if (s.equals("todo")) {
                         try {
                             DukeException.notString(task);
@@ -71,8 +92,8 @@ public class Duke {
                     } else if (s.equals("deadline")) {
                         string = task.split("/", 2);
                         try {
-//                            DukeException.DeadlineAndEventLackInfo(string);
-                            arr.add(new Deadline(string[0], string[1].substring(3)));
+                            DukeException.DeadlineAndEventLackInfo(string);
+                            arr.add(new Deadline(string[0].substring(0, string[0].length()-1), string[1].substring(3)));
                             printAddedTask(arr);
                         }
                         catch (Exception e) {
@@ -82,7 +103,7 @@ public class Duke {
                         string = task.split("/", 2);
                         try {
                             DukeException.DeadlineAndEventLackInfo(string);
-                            arr.add(new Event(string[0], string[1].substring(3)));
+                            arr.add(new Event(string[0].substring(0, string[0].length()-1), string[1].substring(3)));
                             printAddedTask(arr);
                         }
                         catch (Exception e) {
@@ -106,7 +127,7 @@ public class Duke {
 
     private static void writeFile(ArrayList<Task> arr) {
         String s;
-        try (FileWriter writer = new FileWriter(new File("D:\\nus\\MODULES\\sem3\\cs2113\\duke\\src\\main\\data\\duke.txt"), true);
+        try (FileWriter writer = new FileWriter(new File("D:\\nus\\MODULES\\sem3\\cs2113\\duke\\src\\main\\data\\duke.txt"));
              BufferedWriter bw = new BufferedWriter(writer)) {
 
             for (Task t : arr) {
