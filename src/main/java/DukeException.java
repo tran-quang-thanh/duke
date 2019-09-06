@@ -1,9 +1,13 @@
-public class DukeException {
-    public static void checkTask(String task) throws Exception {
+public class DukeException extends Exception {
+    public DukeException(String message) {
+        super(message);
+    }
+
+    public static void notTaskException(String task) throws DukeException {
         if(!task.equals("bye") && !task.equals("list") && !task.equals("done") &&
                 !task.equals("todo") && !task.equals("deadline") && !task.equals("event") &&
                 !task.equals("delete") && !task.equals("find")) {
-            throw new Exception();
+            throw new DukeException("Sorry I don't understand this :'(");
         }
     }
 
