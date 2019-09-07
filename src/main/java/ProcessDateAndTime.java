@@ -1,3 +1,6 @@
+/**
+ * Convert a String of numbers to a date format
+ */
 public class ProcessDateAndTime {
     public static String formatDate(String s) {
         try {
@@ -8,6 +11,12 @@ public class ProcessDateAndTime {
         catch (Exception e) {}
         return s;
     }
+
+    /**
+     * Convert day in form dd/mm/yyyy to d"th" m yyyy
+     * @param date day in form dd/mm/yyyy
+     * @return day in form d"th" m yyyy
+     */
     public static String day(String date) {
         try {
             String[] arr = date.split("/");
@@ -25,12 +34,57 @@ public class ProcessDateAndTime {
             else {
                 idx = "th";
             }
-            date = i + idx + " " + arr[1] + " " + arr[2];
+            int j = Integer.parseInt(arr[1]);
+            String month = "";
+            switch (j) {
+                case 1:
+                    month = "Jan";
+                    break;
+                case 2:
+                    month = "Feb";
+                    break;
+                case 3:
+                    month = "Mar";
+                    break;
+                case 4:
+                    month = "Apr";
+                    break;
+                case 5:
+                    month = "May";
+                    break;
+                case 6:
+                    month = "Jun";
+                    break;
+                case 7:
+                    month = "Jul";
+                    break;
+                case 8:
+                    month = "Aug";
+                    break;
+                case 9:
+                    month = "Sep";
+                    break;
+                case 10:
+                    month = "Oct";
+                    break;
+                case 11:
+                    month = "Nov";
+                    break;
+                case 12:
+                    month = "Dec";
+                    break;
+            }
+            date = i + idx + " " + month + " " + arr[2];
         }
         catch (Exception e) {}
         return date;
     }
 
+    /**
+     * Convert String from hhmm format to hh:mm am/pm
+     * @param time time in form hhmm
+     * @return time in form hh:mm am/pm
+     */
     public static String time(String time) {
         try {
             int i = Integer.parseInt(time);

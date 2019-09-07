@@ -1,6 +1,9 @@
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Storage to save and load data
+ */
 public class Storage {
     private String filePath;
 
@@ -8,7 +11,11 @@ public class Storage {
         this.filePath = filePath;
     }
 
-    private void writeFile(ArrayList<Task> taskList) {
+    /**
+     * Write data to duke.txt
+     * @param taskList
+     */
+    public void saveFile(ArrayList<Task> taskList) {
         String s;
         try (FileWriter writer = new FileWriter(new File(this.filePath));
              BufferedWriter bw = new BufferedWriter(writer)) {
@@ -27,13 +34,12 @@ public class Storage {
         }
     }
 
-    public void saveFile(ArrayList<Task> taskList) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println("  " + taskList.get(taskList.size() - 1));
-        writeFile(taskList);
-        System.out.println("Now you have " + taskList.size() + " tasks in the list.");
-    }
-
+    /**
+     * Load data from storage
+     * Call when start Duke
+     * @return list of tasks stored in Storage
+     * @throws DukeException
+     */
     public ArrayList<Task> load() throws DukeException
     {
         String s;

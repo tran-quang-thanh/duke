@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+/**
+ * To deal with user's command
+ */
 public class Parser {
     private static String[] s;
     private static String task;
@@ -60,6 +63,9 @@ public class Parser {
                     try {
                         DukeException.notString(task);
                         taskList.add(new ToDo(task));
+                        System.out.println("Got it. I've added this task:");
+                        System.out.println("  " + taskList.getTaskList().get(taskList.getTaskList().size() - 1));
+                        System.out.println("Now you have " + taskList.getTaskList().size() + " tasks in the list.");
                         storage.saveFile(taskList.getTaskList());
                     } catch (Exception e) {
                         System.out.println("OOPS!!! The description of a todo cannot be empty.");
@@ -69,6 +75,9 @@ public class Parser {
                     try {
                         DukeException.DeadlineAndEventLackInfo(s);
                         taskList.getTaskList().add(new Deadline(s[0].substring(0, s[0].length() - 1), s[1].substring(3)));
+                        System.out.println("Got it. I've added this task:");
+                        System.out.println("  " + taskList.getTaskList().get(taskList.getTaskList().size() - 1));
+                        System.out.println("Now you have " + taskList.getTaskList().size() + " tasks in the list.");
                         storage.saveFile(taskList.getTaskList());
                     } catch (Exception e) {
                         System.out.println("OOPS!!! Your deadline note is not completed");
@@ -78,6 +87,9 @@ public class Parser {
                     try {
                         DukeException.DeadlineAndEventLackInfo(s);
                         taskList.getTaskList().add(new Event(s[0].substring(0, s[0].length() - 1), s[1].substring(3)));
+                        System.out.println("Got it. I've added this task:");
+                        System.out.println("  " + taskList.getTaskList().get(taskList.getTaskList().size() - 1));
+                        System.out.println("Now you have " + taskList.getTaskList().size() + " tasks in the list.");
                         storage.saveFile(taskList.getTaskList());
                     } catch (Exception e) {
                         System.out.println("OOPS!!! Your event note is not completed");

@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+/**
+ * Create an arrayList to store all tasks
+ */
 public class TaskList {
     private ArrayList<Task> taskList;
 
@@ -28,6 +31,11 @@ public class TaskList {
         System.out.println("Now you have: " + this.taskList.size() + " in the list");
     }
 
+    /**
+     * Find in all tasks some particular tasks containing keyword
+     * @param keyword
+     * @return an arrayList of task that contains a specific keyword
+     */
     public ArrayList<Task> find(String keyword) {
         ArrayList<Task> arrayList = new ArrayList<>();
         for (Task t : this.taskList) {
