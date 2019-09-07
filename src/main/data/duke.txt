@@ -1,14 +1,2 @@
-[T][?]  run
-
-[D][?]  homework (by: 29)
-
-T|0| sleep
-T|0| sleep
-T|0| sleep
-D|0| homework |today
-T|0| sleep
-T|0| sleep
-D|0| homework |today
-T|0| sleep
-D|0| homework |today
-D|0| homework |29th 8 2019 0:12am
+D|0|submit homework|12:00
+D|0|read book|10th 8 2019 12:00pm
